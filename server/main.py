@@ -4,11 +4,10 @@ import shutil
 import os
 
 from gemini_service import extract_bill_with_gemini
-from ocr_prepare_service import prepare_ocr
-from ocr_service import extract_ocr
 
 
 app = FastAPI()
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,6 +16,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 def root():
@@ -38,12 +38,9 @@ async def extract_bill(file: UploadFile = File(...)):
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    ocr_result = extract_ocr(file_path)
-    compact_ocr = prepare_ocr(ocr_result)
-
     gemini_result = extract_bill_with_gemini(
         file_path,
-        compact_ocr
+        []
     )
 
     return gemini_result
