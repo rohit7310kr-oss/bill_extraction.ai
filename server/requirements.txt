@@ -40,9 +40,7 @@ numpy==2.3.5
 opencv-contrib-python==4.10.0.84
 opt-einsum==3.3.0
 packaging==26.3
-paddleocr==3.7.0
-paddlepaddle==3.2.2
-paddlex==3.7.2
+
 pandas==3.0.6
 pillow==12.3.0
 prettytable==3.18.0
